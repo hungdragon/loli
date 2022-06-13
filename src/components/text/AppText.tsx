@@ -21,8 +21,8 @@ const AppText: React.FC<IProps> = props => {
     style: [
       props.style,
       {
-        fontFamily: font.fontFamily,
-        fontWeight: font.fontWeight,
+        fontFamily: 'regular',
+        fontWeight: '300'
       },
     ],
     theme,

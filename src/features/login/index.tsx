@@ -1,11 +1,15 @@
+import { useNavigation } from '@react-navigation/native';
 import React, {useState} from 'react';
-import {Image, StyleSheet, TextInput} from 'react-native';
-import {Button} from 'react-native-paper';
+import {Alert, Image, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
+import {Button, useTheme} from 'react-native-paper';
 import image from '../../assets/icons';
 import AppText from '../../components/text/AppText';
 import AppView from '../../components/view/AppView';
+// import EntypoIcon from 'react-native-vector-icons/AntDesign';
 const Login: React.FC = () => {
-  const [userName, setUserName] = useState<string | undefined>('');
+  const theme=useTheme();
+  const navigation=useNavigation();
+  const [userName, setUserName] = useState<string>('');
   const [passWord, setPassWord] = useState<string>('');
   const [clear, setClear] = useState(true);
   const [hidePassword, setHidePassword] = React.useState<boolean>(true);
@@ -18,16 +22,21 @@ const Login: React.FC = () => {
     //  setErrorMessage('');
     setClear(false);
   };
-
   const onChangePassword = (text: string) => {
     setPassWord(text);
     //  setErrorMessage('');
   };
-
   const onPressLogin = () => {
     //  setErrorMessage('');
     // const _userName = getUsername() as string;
     //  onLogin(_userName, passWord);
+    if(!userName && !passWord){
+      // Alert.alert('34');
+      navigation.navigate('AppTab' as never)
+    }else{
+     // Alert.alert(userName,passWord);
+      navigation.navigate('AppTab' as never)
+    }
   };
 
   return (
@@ -35,7 +44,7 @@ const Login: React.FC = () => {
       <Image source={image.BG_LOGIN_FORM} style={styles.left} />
 
       <AppView style={styles.contentView}>
-        <AppText style={{fontSize: 22, textAlign: 'center'}}>WELLCOME</AppText>
+        <AppText style={[{fontSize: 22, textAlign: 'center'},{color:theme.colors.clearBlue}]}>ADMINTRATORS</AppText>
         <AppView style={styles.paddingItem} />
         <AppView style={{}}>
           <AppView style={styles.textInputWrap}>
@@ -64,13 +73,20 @@ const Login: React.FC = () => {
               onSubmitEditing={onPressLogin}
               // iconPress={() => setHidePassword(!hidePassword)}
             />
+            <TouchableOpacity onPress={() => setHidePassword}>
+              {/* {hidePassword ? (
+                // <EntypoIcon name="eye" size={20} />
+              ) : (
+                // <EntypoIcon name="eye-with-line" size={20} />
+              )} */}
+            </TouchableOpacity>
           </AppView>
-          <Button
+          <TouchableOpacity
             style={styles.loginButton}
-            //  onPress={onPressLogin}
-            uppercase={false}>
+            onPress={onPressLogin}
+          >
             <AppText style={styles.loginText}>{'login'}</AppText>
-          </Button>
+          </TouchableOpacity>
 
           <AppView style={styles.copyright}>
             <AppText style={styles.copyrightText}>
@@ -83,7 +99,10 @@ const Login: React.FC = () => {
       </AppView>
 
       <AppView style={styles.right}>
-        <AppText>dasdasd</AppText>
+        <Image
+          source={image.BG_FOOTBALL}
+          style={{width: '100%', height: '100%'}}
+        />
       </AppView>
     </AppView>
   );
@@ -159,9 +178,12 @@ const styles = StyleSheet.create({
     // backgroundColor: 'red',
   },
   textInputWrap: {
-    borderBottomWidth:0.4,
-    borderBottomColor: '#e5e5e5'
+    borderBottomWidth: 0.4,
+    borderBottomColor: '#e5e5e5',
     //backgroundColor:'red'
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   avatarGender: {
     width: 84,
@@ -178,6 +200,7 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 14,
     letterSpacing: 0,
+    textAlign: 'center',
   },
   invalidText: {
     fontSize: 12,

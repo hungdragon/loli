@@ -4,6 +4,7 @@ import {StyleSheet} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Login from '../features/login';
+import AppTabNavigation from './AppTabsNavigation';
 const Stack = createNativeStackNavigator();
 const RootStackNavigation = () => {
   //const [isLoading, setIsLoading] = useState(true);
@@ -29,6 +30,11 @@ const RootStackNavigation = () => {
           <Stack.Screen
             name="Navigation"
             component={Login}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="AppTab"
+            component={AppTabNavigation}
             options={{headerShown: false}}
           />
         </Stack.Navigator>

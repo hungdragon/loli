@@ -14,7 +14,7 @@ import image from '../../assets/icons';
 import AppText from '../text/AppText';
 import AppLoadingIndicator from './AppLoadingIndicator';
 import AppView, {AppViewProps} from './AppView';
-import AppFontAwesomeIcon from 'react-native-vector-icons/AntDesign'
+// import AppFontAwesomeIcon from 'react-native-vector-icons/AntDesign'
 
 type IProps = AppViewProps & {
   errorString: string;
@@ -49,7 +49,7 @@ const AppViewWithErrorAndLoading: React.FC<IProps> = (props: IProps) => {
     <AppView {...props.style}>
       {loading ? (
         <AppView style={styleLoading}>
-          <AppLoadingIndicator size={loadingSize} />
+          <AppLoadingIndicator size={15} />
         </AppView>
       ) : isError ? (
         <AppView style={styleError}>
@@ -61,11 +61,11 @@ const AppViewWithErrorAndLoading: React.FC<IProps> = (props: IProps) => {
             {errorString}
           </AppText>
           <TouchableOpacity onPress={retryPress} style={styles.retryButton}>
-            <AppFontAwesomeIcon
+            {/* <AppFontAwesomeIcon
               name="undo"
               color={theme.colors.primaryBlue}
               size={15}
-            />
+            /> */}
             <AppText
               style={[styleRetryText, {color: theme.colors.primaryBlue}]}>
               {'retry'}

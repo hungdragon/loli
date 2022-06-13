@@ -1,5 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 const image = {
+  BG_FOOTBALL: require('./BG_FOOTBALL.jpg'),
+  IC_BANNER_FOOTBALL: require('./IC_BANNER_FOOTBALL1.png'),
+  IC_FOOTBALL: require('./ic_football.png'),
   Spider_Man: require('./90344-spider-404.json'),
   IC_REMOVE: require('./Remove-Row.png'),
   Splash: require('./splash.json'),
