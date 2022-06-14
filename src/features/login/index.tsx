@@ -11,7 +11,7 @@ import {Button, useTheme} from 'react-native-paper';
 import image from '../../assets/icons';
 import AppText from '../../components/text/AppText';
 import AppView from '../../components/view/AppView';
-// import EntypoIcon from 'react-native-vector-icons/AntDesign';
+ import EntypoIcon from 'react-native-vector-icons/Entypo';
 const Login: React.FC = () => {
   const theme = useTheme();
   const navigation = useNavigation();
@@ -85,12 +85,12 @@ const Login: React.FC = () => {
               onSubmitEditing={onPressLogin}
               // iconPress={() => setHidePassword(!hidePassword)}
             />
-            <TouchableOpacity onPress={() => setHidePassword}>
-              {/* {hidePassword ? (
-                // <EntypoIcon name="eye" size={20} />
+            <TouchableOpacity onPress={() => setHidePassword(!hidePassword)}>
+              {!hidePassword ? (
+                 <EntypoIcon name="eye" size={20} />
               ) : (
-                // <EntypoIcon name="eye-with-line" size={20} />
-              )} */}
+                 <EntypoIcon name="eye-with-line" size={20} />
+              )}
             </TouchableOpacity>
           </AppView>
           <TouchableOpacity style={styles.loginButton} onPress={onPressLogin}>
