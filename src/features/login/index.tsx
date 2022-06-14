@@ -1,14 +1,20 @@
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import React, {useState} from 'react';
-import {Alert, Image, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
+import {
+  Alert,
+  Image,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+} from 'react-native';
 import {Button, useTheme} from 'react-native-paper';
 import image from '../../assets/icons';
 import AppText from '../../components/text/AppText';
 import AppView from '../../components/view/AppView';
 // import EntypoIcon from 'react-native-vector-icons/AntDesign';
 const Login: React.FC = () => {
-  const theme=useTheme();
-  const navigation=useNavigation();
+  const theme = useTheme();
+  const navigation = useNavigation();
   const [userName, setUserName] = useState<string>('');
   const [passWord, setPassWord] = useState<string>('');
   const [clear, setClear] = useState(true);
@@ -30,12 +36,12 @@ const Login: React.FC = () => {
     //  setErrorMessage('');
     // const _userName = getUsername() as string;
     //  onLogin(_userName, passWord);
-    if(!userName && !passWord){
+    if (!userName && !passWord) {
       // Alert.alert('34');
-      navigation.navigate('AppTab' as never)
-    }else{
-     // Alert.alert(userName,passWord);
-      navigation.navigate('AppTab' as never)
+      navigation.navigate('AppTab' as never);
+    } else {
+      // Alert.alert(userName,passWord);
+      navigation.navigate('AppTab' as never);
     }
   };
 
@@ -44,7 +50,13 @@ const Login: React.FC = () => {
       <Image source={image.BG_LOGIN_FORM} style={styles.left} />
 
       <AppView style={styles.contentView}>
-        <AppText style={[{fontSize: 22, textAlign: 'center'},{color:theme.colors.clearBlue}]}>ADMINTRATORS</AppText>
+        <AppText
+          style={[
+            {fontSize: 22, textAlign: 'center'},
+            {color: theme.colors.clearBlue},
+          ]}>
+          ADMINTRATORS
+        </AppText>
         <AppView style={styles.paddingItem} />
         <AppView style={{}}>
           <AppView style={styles.textInputWrap}>
@@ -81,10 +93,7 @@ const Login: React.FC = () => {
               )} */}
             </TouchableOpacity>
           </AppView>
-          <TouchableOpacity
-            style={styles.loginButton}
-            onPress={onPressLogin}
-          >
+          <TouchableOpacity style={styles.loginButton} onPress={onPressLogin}>
             <AppText style={styles.loginText}>{'login'}</AppText>
           </TouchableOpacity>
 
