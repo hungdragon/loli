@@ -2,6 +2,7 @@
 import React from 'react';
 import _ from 'lodash';
 import {
+  FlatList,
   //  FlatList,
   Image,
   ImageSourcePropType,
@@ -13,29 +14,12 @@ import image from '../../assets/icons';
 import AppText from '../../components/text/AppText';
 import AppView from '../../components/view/AppView';
 import AppPieChart from '../chart/AppPieChart';
+import ItemDescription from './ItemDescription';
 export const convertString: <T>(data: T) => string = data => {
   return _.toString(data);
 };
 const ChartFootball: React.FC = () => {
-//   const lstDataDesc = [
-//     {
-//       color: '#FFA95A',
-//       label: 'Vừa',
-//       value: 8,
-//     },
-//     {
-//       color: '#5E81F4',
-//       label: 'Nhỏ',
-//       value: 24,
-//     },
-//     {
-//       color: '#58CF8D',
-//       label: 'Siêu nhỏ',
-//       value: 60,
-//     },
-//   ];
-
-  const lstDataChart = [
+  const lstDataDesc = [
     {
       color: '#FFA95A',
       label: 'Vừa',
@@ -43,12 +27,30 @@ const ChartFootball: React.FC = () => {
     },
     {
       color: '#5E81F4',
-      label: 'Nhỏ',
+      label: 'Doanh Thu',
+      value: 26,
+    },
+    {
+      color: '#58CF8D',
+      label: 'Số trận bóng',
+      value: 66,
+    },
+  ];
+
+  const lstDataChart = [
+    {
+      color: '#FFA95A',
+      label: 'So sánh',
+      value: 8,
+    },
+    {
+      color: '#5E81F4',
+      label: 'Doanh Thu',
       value: 24,
     },
     {
       color: '#58CF8D',
-      label: 'Siêu nhỏ',
+      label: 'Số trận đấu',
       value: 60,
     },
   ];
@@ -57,9 +59,9 @@ const ChartFootball: React.FC = () => {
     processColor('#FFA95A'),
     processColor('#5E81F4'),
   ];
-  //   const renderItem = (item: ChartKeyValue) => {
-  //     return <ItemDescription item={item} />;
-  //   };
+  const renderItem = (item: any) => {
+    return <ItemDescription item={item} />;
+  };
 
   return (
     <AppView style={styles.block}>
@@ -72,16 +74,16 @@ const ChartFootball: React.FC = () => {
           source={image.CHECK_GREEN as ImageSourcePropType}
         />
       </AppView> */}
-      <AppView style={styles.hr} />
+      {/* <AppView style={styles.hr} /> */}
       <AppView style={styles.viewChart}>
         <AppPieChart values={lstDataChart} colors={lstColorChart} />
       </AppView>
       <AppView style={styles.bottom}>
-        {/* <FlatList
+        <FlatList
           data={lstDataDesc}
           keyExtractor={(item, index) => convertString(index)}
-          renderItem={({ item }) => renderItem(item as ChartKeyValue)}
-        /> */}
+          renderItem={({item}) => renderItem(item as any)}
+        />
       </AppView>
     </AppView>
   );

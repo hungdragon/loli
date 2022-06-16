@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
 // import AppText from '../../components/text/AppText';
 import AppView from '../../components/view/AppView';
 // import AntDesignIcon from 'react-native-vector-icons/AntDesign';
@@ -19,8 +19,10 @@ const Dashboard: React.FC = () => {
       </AppView>
       <AppView style={{flex: 1, flexDirection: 'row'}}>
         <DashboardTable />
-        <AppView style={{flex: 0.5, backgroundColor: 'green'}}>
-          <ChartFootball />
+        <AppView style={{flex: 0.5, padding: 15}}>
+          <AppView style={{flex: 1, backgroundColor: '#fff', padding: 10}}>
+            <ChartFootball />
+          </AppView>
         </AppView>
       </AppView>
     </AppView>
