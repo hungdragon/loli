@@ -8,6 +8,7 @@ import Dashboard from '../features/dashboard';
 import AppUserInfo from '../components/userInfo/AppUserInfo';
 import AppViewWithFullScreenLoading from '../components/view/AppViewWithFullScreenLoading';
 import AppView from '../components/view/AppView';
+import Football from '../features/football';
 // import { AppViewWithFullScreenLoading, AppBanner } from 'components';
 
 
@@ -88,14 +89,14 @@ const AppTabNavigation: React.FC = () => {
           name="Dashboard"
           component={Dashboard}
           options={{
-            title: 'Dashboard',
+            title: 'Điều khiển',
           }}
         />
         <AppTab.Screen
           name="Warning"
-          component={Dashboard}
+          component={Football}
           options={{
-            title: 'Warning',
+            title: 'Sân bóng',
           }}
         />
       </AppTab.Navigator>
