@@ -2,6 +2,7 @@ import {useNavigation} from '@react-navigation/native';
 import React, {useState} from 'react';
 import {
   Alert,
+  AsyncStorage,
   Image,
   StyleSheet,
   TextInput,
@@ -11,7 +12,9 @@ import {Button, useTheme} from 'react-native-paper';
 import image from '../../assets/icons';
 import AppText from '../../components/text/AppText';
 import AppView from '../../components/view/AppView';
- import EntypoIcon from 'react-native-vector-icons/Entypo';
+import EntypoIcon from 'react-native-vector-icons/Entypo';
+import axios from 'axios';
+import {BASE_URL} from '../../utils';
 const Login: React.FC = () => {
   const theme = useTheme();
   const navigation = useNavigation();
@@ -32,16 +35,45 @@ const Login: React.FC = () => {
     setPassWord(text);
     //  setErrorMessage('');
   };
-  const onPressLogin = () => {
+  const onPressLogin = async () => {
     //  setErrorMessage('');
     // const _userName = getUsername() as string;
     //  onLogin(_userName, passWord);
     if (!userName && !passWord) {
       // Alert.alert('34');
-      navigation.navigate('AppTab' as never);
+      // navigation.navigate('AppTab' as never);
     } else {
       // Alert.alert(userName,passWord);
-      navigation.navigate('AppTab' as never);
+      callApiLogin();
+    }
+  };
+  const callApiLogin = async () => {
+    console.log(userName, passWord);
+    try {
+      const response = await axios.post(`${BASE_URL}api/login`, {
+        userName,
+        passWord,
+      });
+      const {error, status, token, isAdmin} = response.data;
+      console.log('STATUS----', status);
+      if (status === 'ok') {
+        const _token = token;
+        await AsyncStorage.setItem('token', _token);
+        await AsyncStorage.setItem('role', isAdmin);
+        Alert.alert('OK', 'Successfully registered', [{text: 'OK'}]);
+        // dispatch({
+        //   type: 'ON_REGISTER',
+        //   payload: response.data,
+        // });
+        navigation.navigate('AppTab' as never);
+      } else if (status === 401) {
+        Alert.alert('Lỗi', error, [{text: 'OK'}]);
+      } else {
+        Alert.alert('Lỗi', error, [{text: 'OK'}]);
+      }
+    } catch (error) {
+      console.log('Xảy ra lỗi' + error);
+      console.log('ERRR' + error);
     }
   };
 
@@ -87,9 +119,9 @@ const Login: React.FC = () => {
             />
             <TouchableOpacity onPress={() => setHidePassword(!hidePassword)}>
               {!hidePassword ? (
-                 <EntypoIcon name="eye" size={20} />
+                <EntypoIcon name="eye" size={20} />
               ) : (
-                 <EntypoIcon name="eye-with-line" size={20} />
+                <EntypoIcon name="eye-with-line" size={20} />
               )}
             </TouchableOpacity>
           </AppView>
